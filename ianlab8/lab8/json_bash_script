@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Fetch the METAR data from the API and save it to a file
+curl -s "https://aviationweather.gov/api/data/metar?ids=KMCI&format=json&taf=false&hours=12&bbox=40%2C-90%2C45%2C-85" > aviation.json
+
+# Use jq to extract the 'receiptTime' from the JSON and display the first 6 lines
+jq -r '.[].receiptTime' aviation.json | head -n 6
+
